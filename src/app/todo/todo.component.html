@@ -1,0 +1,23 @@
+<div *ngIf="afAuth.user | async as user; else showLogin">
+    <div class="chatX container mt-5">
+      <div class="row d-flex justify-content-between mb-5">
+        <input 
+        (keyup.enter)="sendChat($event.target.value)"
+        [(ngModel)]="message"
+        type="text" class="col-8 ml-2" id="message" placeholder="Chat here..." autofocus />
+        <button class="col-3 btn mr-2" (click)="logout()">Logout</button>
+      </div>
+  
+      <!-- Reverse X-Team -->
+      <!-- <div class="chat-container row" *ngFor="let item of items | async | reverse; let i = index"> -->
+      <div class="chat-container row" *ngFor="let item of items | async; let i = index">
+        <div class="imgX">
+          <img [src]="item.image" [alt]="item.names">
+        </div>
+        <div class="fullX">
+            <a routerLink="/">{{item.name}}</a>
+            <p>{{item.message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
